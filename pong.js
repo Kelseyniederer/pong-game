@@ -5,8 +5,25 @@ class Vector {
     }
 }
 
+class Rectangle {
+    constructor(width, height) {
+        this.position = new Vector;
+        this.size = new Vector(width, height)
+    }
+}
+
+class Ball extends Rectangle {
+    constructor() {
+        super(10, 10);
+        this.velocity = new Vector;
+    }
+}
+
 const canvas = document.getElementById('pong');
 const context = canvas.getContext('2d');
+
+const ball = new Ball;
+console.log(ball);
 
 context.fillStyle = '#000';
 context.fillRect(0, 0, canvas.width, canvas.height);
