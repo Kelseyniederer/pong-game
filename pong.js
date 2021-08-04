@@ -10,6 +10,18 @@ class Rectangle {
         this.position = new Vector;
         this.size = new Vector(width, height)
     }
+    get left(){
+        return this.position.x - this.size.x / 2;
+    }
+    get right(){
+        return this.position.x - this.size.x / 2;
+    }
+    get top(){
+        return this.position.y - this.size.y / 2;
+    }
+    get bottom(){
+        return this.position.y - this.size.y / 2;
+    }
 }
 
 class Ball extends Rectangle {
@@ -43,18 +55,18 @@ function update(dt) {
     ball.position.x += ball.velocity.x * dt;
     ball.position.y += ball.velocity.y * dt;
 
-    if (ball.position.x < 0 || ball.position.x > canvas.width){
+    if (ball.left < 0 || ball.right > canvas.width){
         ball.velocity.x = -ball.velocity.x;
     }
 
-    if (ball.position.y < 0 || ball.position.y > canvas.height){
+    if (ball.top < 0 || ball.bottom > canvas.height){
         ball.velocity.y = -ball.velocity.y;
     }
 
     context.fillStyle = '#000';
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-    context.fillStyle = '#fff';
+    context.fillStyle = '#008FFF';
     context.fillRect(ball.position.x, ball.position.y, ball.size.x, ball.size.y);
 }
 
