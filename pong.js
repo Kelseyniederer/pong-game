@@ -53,8 +53,18 @@ class Pong {
             requestAnimationFrame(callback);
         };
 
-    callback();
-}
+         callback();
+        }
+    draw(){
+        this._context.fillStyle = '#191970';
+        this._context.fillRect(0, 0, this._canvas.width, this._canvas.height);
+        this.drawRect(this.ball);
+         }
+    drawRect(rect){
+        this._context.fillStyle = '#AFEEEE';
+        this._context.fillRect(rect.position.x, rect.position.y, rect.size.x, rect.size.y);
+        }
+
 
         update(dt) { 
         this.ball.position.x += this.ball.velocity.x * dt;
@@ -67,13 +77,8 @@ class Pong {
         if (this.ball.top < 0 || this.ball.bottom > this._canvas.height){
             this.ball.velocity.y = -this.ball.velocity.y;
         }
-    
-        this._context.fillStyle = '#191970';
-        this._context.fillRect(0, 0, this._canvas.width, this._canvas.height);
-    
-        this._context.fillStyle = '#AFEEEE';
-        this._context.fillRect(this.ball.position.x, this.ball.position.y, this.ball.size.x, this.ball.size.y);
-    }
+            this.draw();
+        }
 }
 
 const canvas = document.getElementById('pong');
