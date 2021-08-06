@@ -31,43 +31,51 @@ class Ball extends Rectangle {
     }
 }
 
+class Pong {
+    constructor(canvas){
+        this._canvas = canvas;
+        this._context = canvas.getContext('2d');
+
+        this.ball = new Ball;
+        this.ball.position.x = 100;
+        this.ball.position.y = 50;
+
+        this.ball.velocity.x = 100;
+        this.ball.velocity.y = 100;
+    
+
+        let lastTime;
+        const callback = (millis) => {
+            if (lastTime) {
+                 this.update((millis - lastTime) / 1000);
+                }
+            lastTime = millis;
+            requestAnimationFrame(callback);
+        };
+
+    callback();
+}
+
+        update(dt) { 
+        this.ball.position.x += this.ball.velocity.x * dt;
+        this.ball.position.y += this.ball.velocity.y * dt;
+    
+        if (this.ball.left < 0 || this.ball.right > this._canvas.width){
+            this.ball.velocity.x = -this.ball.velocity.x;
+        }
+    
+        if (this.ball.top < 0 || this.ball.bottom > this._canvas.height){
+            this.ball.velocity.y = -this.ball.velocity.y;
+        }
+    
+        this._context.fillStyle = '#000';
+        this._context.fillRect(0, 0, this._canvas.width, this._canvas.height);
+    
+        this._context.fillStyle = '#008FFF';
+        this._context.fillRect(this.ball.position.x, this.ball.position.y, this.ball.size.x, this.ball.size.y);
+    }
+}
+
 const canvas = document.getElementById('pong');
-const context = canvas.getContext('2d');
 
-const ball = new Ball;
-ball.position.x = 100;
-ball.position.y = 50;
-
-ball.velocity.x = 100;
-ball.velocity.y = 100;
-
-let lastTime;
-function callback(millis) {
-    if (lastTime) {
-        update((millis - lastTime) / 1000);
-    }
-
-    lastTime = millis;
-    requestAnimationFrame(callback);
-}
-
-function update(dt) { 
-    ball.position.x += ball.velocity.x * dt;
-    ball.position.y += ball.velocity.y * dt;
-
-    if (ball.left < 0 || ball.right > canvas.width){
-        ball.velocity.x = -ball.velocity.x;
-    }
-
-    if (ball.top < 0 || ball.bottom > canvas.height){
-        ball.velocity.y = -ball.velocity.y;
-    }
-
-    context.fillStyle = '#000';
-    context.fillRect(0, 0, canvas.width, canvas.height);
-
-    context.fillStyle = '#008FFF';
-    context.fillRect(ball.position.x, ball.position.y, ball.size.x, ball.size.y);
-}
-
-callback();
+const pong = new Pong(canvas);
