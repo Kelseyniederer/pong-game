@@ -68,10 +68,10 @@ class Pong {
             this.ball.velocity.y = -this.ball.velocity.y;
         }
     
-        this._context.fillStyle = '#000';
+        this._context.fillStyle = '#191970';
         this._context.fillRect(0, 0, this._canvas.width, this._canvas.height);
     
-        this._context.fillStyle = '#008FFF';
+        this._context.fillStyle = '#AFEEEE';
         this._context.fillRect(this.ball.position.x, this.ball.position.y, this.ball.size.x, this.ball.size.y);
     }
 }
