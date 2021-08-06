@@ -80,7 +80,7 @@ class Pong {
 
     drawRect(rect){
         this._context.fillStyle = '#AFEEEE';
-        this._context.fillRect(rect.position.x, rect.position.y, rect.size.x, rect.size.y);
+        this._context.fillRect(rect.left, rect.top, rect.size.x, rect.size.y);
         }
 
 
