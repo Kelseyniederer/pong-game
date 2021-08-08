@@ -95,6 +95,8 @@ class Pong {
         if (this.ball.top < 0 || this.ball.bottom > this._canvas.height){
             this.ball.velocity.y = -this.ball.velocity.y;
         }
+
+            this.players[1].position.y = this.ball.position.y;
             this.draw();
         }
 }
