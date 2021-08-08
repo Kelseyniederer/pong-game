@@ -87,11 +87,18 @@ class Pong {
         }
 
         reset(){
-            this.ball.position.x = 100;
-            this.ball.position.y = 50;
+            this.ball.position.x = this._canvas.width / 2;
+            this.ball.position.y = this._canvas.height / 2;
     
-            this.ball.velocity.x = 300;
-            this.ball.velocity.y = 300;
+            this.ball.velocity.x = 0;
+            this.ball.velocity.y = 0;
+        }
+
+        start(){
+            if (this.ball.velocity.x === 0 && this.ball.velocity.y === 0) {
+                this.ball.velocity.x = 108;
+                this.ball.velocity.y = 108;
+            }
         }
         update(dt) { 
         this.ball.position.x += this.ball.velocity.x * dt;
@@ -118,4 +125,8 @@ const pong = new Pong(canvas);
 
 canvas.addEventListener('mousemove', event => {
     pong.players[0].position.y = event.offsetY;
+});
+
+canvas.addEventListener('click', event => {
+    pong.start();
 });
