@@ -14,13 +14,13 @@ class Rectangle {
         return this.position.x - this.size.x / 2;
     }
     get right(){
-        return this.position.x - this.size.x / 2;
+        return this.position.x + this.size.x / 2;
     }
     get top(){
         return this.position.y - this.size.y / 2;
     }
     get bottom(){
-        return this.position.y - this.size.y / 2;
+        return this.position.y + this.size.y / 2;
     }
 }
 
@@ -71,6 +71,13 @@ class Pong {
 
          callback();
         }
+
+    collide(player, ball){
+        if (player.left < ball.right && player.right > ball.left && player.top < ball.bottom && player.bottom > ball.top){
+            ball.velocity.x = - ball.velocity.x;
+        }
+    }    
+
     draw(){
         this._context.fillStyle = '#191970';
         this._context.fillRect(0, 0, this._canvas.width, this._canvas.height);
@@ -97,10 +104,14 @@ class Pong {
         }
 
             this.players[1].position.y = this.ball.position.y;
+            this.players.forEach(player => this.collide(player, this.ball));
             this.draw();
         }
 }
 
 const canvas = document.getElementById('pong');
-
 const pong = new Pong(canvas);
+
+canvas.addEventListener('mousemove', event => {
+    pong.players[0].position.y = event.offsetY;
+});
