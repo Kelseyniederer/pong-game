@@ -73,6 +73,32 @@ class Pong {
         };
 
          callback();
+
+         this.CHAR_PIXEL = 10;
+         this.CHARS =[
+            '111101101101111',
+            '010010010010010',
+            '111001111100111',
+            '111001111001111',
+            '101101111001001',
+            '111100111001111',
+            '111100111101111',
+            '111001001001001',
+            '111101111101111',
+            '111101111001111',
+         ].map(string => {
+             const canvas = document.createElement('canvas');
+             canvas.height = this.CHAR_PIXEL * 5;
+             canavs.width = this.CHAR_PIXEL * 3;
+             const context = canvas.getContext('2d');
+             context.fillStyle = '#191970';
+             string.split('').forEach((fill, i) => {
+                 if (fill === '1'){
+                     
+                 }
+             });
+         })
+
          this.reset();
         }
 
