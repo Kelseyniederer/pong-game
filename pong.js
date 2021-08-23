@@ -78,8 +78,10 @@ class Pong {
 
     collide(player, ball){
         if (player.left < ball.right && player.right > ball.left && player.top < ball.bottom && player.bottom > ball.top){
+            const length = ball.velocity.length;
             ball.velocity.x = - ball.velocity.x;
-            ball.velocity.length *= 1.05;
+            ball.velocity.y += 333 * (Math.random() - .5);
+            ball.velocity.length = length * 1.08;
         }
     }    
 
